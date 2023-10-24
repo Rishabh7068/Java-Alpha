@@ -3,6 +3,7 @@ public class Pre {
         Node children[] = new Node[26];
         boolean eow = false;
         int freq;
+
         Node() {
             for (int i = 0; i < 26; i++) {
                 children[i] = null;
@@ -27,28 +28,38 @@ public class Pre {
         currNode.eow = true;
     }
 
-    public static void search(Node root, String ans) {
+    public static String ans = "";
+
+    public static void findLongest(Node root, StringBuilder tem) {
         if (root == null) {
             return;
         }
-        if (root.freq == 1) {
-            System.out.println(ans);
-            return;
-        }
 
-        for (int i = 0; i < root.children.length; i++) {
-            if (root.children[i] != null) {
-                search(root.children[i],ans + (char)(i + 'a'));
+        Node curr = root;
+        for (int i = 0; i < 26; i++) {
+            if (curr.children[i] != null && curr.children[i].eow == true) {
+                char ch = (char) (i + 'a');
+                tem.append(ch);
+                if (tem.length() > ans.length()) {
+                    ans = tem.toString();
+                }
+                findLongest(curr.children[i], tem);
+                // back track
+                tem.deleteCharAt(tem.length() - 1);
+
             }
         }
     }
 
     public static void main(String[] args) {
-        String arr[] = {"zebra", "dog", "duck", "dove"};
+        String str[] = { "a", "banana", "app", "appl", "ap", "apply", "apple" };
 
-        for (String word : arr) {
-            insert(word);
+        for (String s : str) {
+            insert(s);
         }
-        search(root, "");
+
+        findLongest(root, new StringBuilder(""));
+        System.out.println(ans);
+
     }
 }
