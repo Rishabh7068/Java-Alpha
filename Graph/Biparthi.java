@@ -47,12 +47,10 @@ public class Biparthi {
         }
         return true;
     }
-
     public static boolean bfs(ArrayList<Edge> graph[], int in, int col[]) {
         Queue<Integer> q = new LinkedList<>();
         q.add(0);
         col[0] = 0;// yellow
-
         while (!q.isEmpty()) {
             int curr = q.remove();
             for (int i = 0; i < graph[curr].size(); i++) {
