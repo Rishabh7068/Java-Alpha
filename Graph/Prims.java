@@ -36,19 +36,16 @@ public class Prims {
         int v;
         int cost;
         int parent; // Added to track the parent vertex
-
         public Pair(int v, int cost, int parent) {
             this.v = v;
             this.cost = cost;
             this.parent = parent;
         }
-
         @Override
         public int compareTo(Pair p2) {
             return this.cost - p2.cost;
         }
     }
-
     public static void mst(ArrayList<Edge> graph[]) {
         boolean vis[] = new boolean[graph.length];
         PriorityQueue<Pair> pq = new PriorityQueue<>();
@@ -61,7 +58,6 @@ public class Prims {
             if (!vis[curr.v]) {
                 vis[curr.v] = true;
                 finalcost += curr.cost;
-
                 // Add the edge that brought us to this vertex to the ans list
                 if (curr.parent != -1) { // Skip adding the first vertex's edge as it doesn't have a parent
                     ans.add(new Edge(curr.parent, curr.v, curr.cost));
@@ -75,9 +71,7 @@ public class Prims {
                 }
             }
         }
-
         System.out.println("Final min cost " + finalcost);
-
         for (Edge edge : ans) {
             System.out.println(edge.src + " - " + edge.des + " with weight " + edge.wt);
         }
