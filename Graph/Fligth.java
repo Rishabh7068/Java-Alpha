@@ -59,11 +59,8 @@ public class Fligth {
                 dist[i] = Integer.MAX_VALUE;
             }
         }
-
         Queue<Info> q = new LinkedList<>();
-
         q.add(new Info(src, 0, 0));
-
         while (!q.isEmpty()) {
             Info curr = q.remove();
             if(curr.stops > k){
@@ -84,11 +81,9 @@ public class Fligth {
             }
 
         }
-
         if (dist[dst] == Integer.MAX_VALUE) {
             return -1;
         }
-
         return dist[dst];
     }
 
